@@ -48,6 +48,7 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   # Raises error for missing translations
-  # config.action_view.raise_on_missing_translations = true
+  # config.action_view.raise_on_missing_translations = truec
+  config.account_redirect = ENV["ACCOUNT_REDIRECT_ADDRESS"] == nil ? "http://localhost:8081" : ENV["ACCOUNT_REDIRECT_ADDRESS"]
   config.account_ip = ENV["ACCOUNT_ADDRESS"] == nil ? "http://localhost:8081" : ENV["ACCOUNT_ADDRESS"]
 end
