@@ -6,12 +6,12 @@ class AdminMailer < ActionMailer::Base
   def booking_report(booking)
     @booking = booking
     @url = booking_url(@booking)
-    recipients = [ORDF_PRIT_MAIL, @booking.user.email]
+    recipients = [ORDF_PRIT_MAIL] # Temporarily removed sending mail to the booker
 
     recipients << VO_MAIL if @booking.party_report.present?
     subject = "#{@booking.party_report.present? ? 'Aktivitetsanmälan' : 'Bokning'} av #{@booking.room}, #{@booking.booking_range}"
 
-    mail to: recipients, subject: subject, reply_to: @booking.user.email
+    mail to: recipients, subject: subject
   end
 
   def chalmers_report(bookings)
