@@ -25,7 +25,6 @@ class User
 	end
 
 	def group_name
-		puts self.attributes
 		self.groups.map { | g | g["superGroup"]["name"].to_sym }
 	end
 

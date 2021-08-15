@@ -49,7 +49,7 @@ class Booking < ActiveRecord::Base
 
 
   def user
-    @user ||= User.find("me")
+    @user ||= User.find(self.user_id)
   end
 
   def group_sym

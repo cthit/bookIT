@@ -6,8 +6,8 @@ module OmniAuth
 
       option :client_options, {
         site: Rails.configuration.account_ip,
-        authorize_url: 'api/oauth/authorize',
-        token_url: '/api/oauth/token'
+        authorize_url: "#{Rails.configuration.account_redirect}/api/oauth/authorize",
+        token_url: "#{Rails.configuration.account_ip}/api/oauth/token"
       }
 
       uid do
