@@ -1,7 +1,9 @@
 using System;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using UnBookIT.Authentication;
 using UnBookIT.Data;
 using UnBookIT.Services;
 
@@ -28,11 +30,23 @@ builder.Services.AddControllers();
 		));
 }
 
+// Setup Gamma OAuth2
+{
+	const string GammaChallengeScheme = "Gamma";
+	builder.Services.AddAuthentication(options =>
+		{
+			options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+			options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+			options.DefaultChallengeScheme = GammaChallengeScheme;
+		})
+		.AddCookie()
+		.AddOAuth<GammaAuthenticationOptions, GammaAuthenticationHandler>(GammaChallengeScheme, o => { });
+}
+
 var app = builder.Build();
 
-var prefix = Environment.GetEnvironmentVariable("ROUTE_PREFIX") ?? "";
-app.UsePathBase(prefix);
-app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 app.Run();

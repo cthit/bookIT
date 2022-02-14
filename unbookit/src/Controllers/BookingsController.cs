@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using UnBookIT.Models;
@@ -7,6 +8,7 @@ using UnBookIT.Services;
 namespace UnBookIT.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("[controller]")]
 public class BookingsController : ControllerBase
 {
