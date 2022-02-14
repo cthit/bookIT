@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using UnBookIT.Models;
 using UnBookIT.Services;
 
 namespace UnBookIT.Controllers;
@@ -20,14 +18,6 @@ public class BookingsController : ControllerBase
 		this.logger = logger;
 		this.service = service;
 	}
-
-	[HttpGet]
-	public IEnumerable<Booking> GetAll() =>
-		service.GetAll();
-
-	[HttpGet("{id}")]
-	public Booking? Get(int id) =>
-		service.Get(id);
 
 	[HttpDelete("{id}")]
 	public bool Delete(int id) =>
