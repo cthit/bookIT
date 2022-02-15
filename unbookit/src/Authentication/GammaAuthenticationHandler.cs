@@ -29,7 +29,13 @@ class GammaAuthenticationHandler : OAuthHandler<GammaAuthenticationOptions>
 		{
 			["grant_type"] = "authorization_code",
 			["code"] = context.Code,
+#if DEBUG
 			["redirect_uri"] = context.RedirectUri,
+#else
+			["redirect_uri"] = context.RedirectUri.Replace("http://", "https://"),
+#endif
+			["client_id"] = Options.ClientId,
+			["client_secret"] = Options.ClientSecret,
 		};
 
 		// PKCE https://tools.ietf.org/html/rfc7636#section-4.5, see BuildChallengeUrl
@@ -53,4 +59,12 @@ class GammaAuthenticationHandler : OAuthHandler<GammaAuthenticationOptions>
 			false => OAuthTokenResponse.Failed(new Exception($"OAuth token endpoint failure: Status: {response.StatusCode};Headers: {response.Headers};Body: {body};")),
 		};
 	}
+
+#if !DEBUG
+	protected override string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)
+	{
+		redirectUri = redirectUri.Replace("http://", "https://");
+		return base.BuildChallengeUrl(properties, redirectUri);
+	}
+#endif
 }
