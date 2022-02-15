@@ -147,7 +147,7 @@
   </div>
   <br>
   <div class="actions">
-    <%= link_to 'Radera', "#{Rails.configuration.unbookit}/bookings/#{@booking.id}", method: :delete, class: 'btn btn-dangerous' unless f.object.new_record? %>
+    <%= link_to 'Radera', "#{Rails.configuration.unbookit}/bookings/#{@booking.id}/delete", class: 'btn btn-dangerous' unless f.object.new_record? %>
     <%= link_to "Alla bokningar", bookings_path, class: 'btn btn-boring'%>
     <%= f.submit %>
   </div>

@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using UnBookIT.Constraints;
 using UnBookIT.Models;
 using UnBookIT.Services;
 
@@ -20,7 +19,7 @@ public class BookingsController : ControllerBase
 	public BookingsController(IBookITService service) =>
 		(this.service) = (service);
 
-	[HttpPost("{id}"), FormDelete]
+	[HttpGet("{id}/delete")]
 	[ResponseCache(NoStore = true)]
 	public IActionResult Delete(int id) =>
 		service.Delete(id) switch
