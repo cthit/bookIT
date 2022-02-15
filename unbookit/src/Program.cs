@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using UnBookIT.Authentication;
+using UnBookIT.Controllers;
 using UnBookIT.Data;
 using UnBookIT.Services;
 
@@ -42,6 +43,8 @@ builder.Services.AddControllers();
 		.AddCookie()
 		.AddOAuth<GammaAuthenticationOptions, GammaAuthenticationHandler>(GammaChallengeScheme, o => { });
 }
+
+BookingsController.RedirectURL = Environment.GetEnvironmentVariable("REDIRECT_URL") ?? "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 
 var app = builder.Build();
 
