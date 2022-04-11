@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,8 +22,8 @@ public class BookingsController : ControllerBase
 
 	[HttpGet("{id}/delete")]
 	[ResponseCache(NoStore = true)]
-	public IActionResult Delete(int id) =>
-		service.Delete(id) switch
+	public async Task<IActionResult> Delete(int id) =>
+		await service.Delete(id) switch
 		{
 			true => SeeOther(RedirectURL),
 			false => NotFound(new Error($"Could not find booking with id {id}. If you think it should exists, please contact digIT.")),

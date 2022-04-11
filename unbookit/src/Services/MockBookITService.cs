@@ -1,7 +1,9 @@
+using System.Threading.Tasks;
+
 namespace UnBookIT.Services;
 
 public class MockBookITService : IBookITService
 {
-	public bool Delete(int id) =>
-		id == 1;
+	public Task<bool> Delete(int id) =>
+		Task.FromResult(id == 1);
 }
