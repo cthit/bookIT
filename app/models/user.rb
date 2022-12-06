@@ -17,7 +17,7 @@ class User
 	has_many :bookings
 
 	@@ADMIN_GROUPS = [:digit, :prit, :styrit, :superadmin]
-	@@FILTER = [:digit, :styrit, :prit, :nollkit, :sexit, :fanbarerit, :'8bit', :drawit, :armit, :hookit, :fritid, :snit, :flashit, :valberedningen, :laggit, :fikit, :dpo, :superadmin, :equalit]
+	@@FILTER = [:digit, :styrit, :prit, :nollkit, :sexit, :fanbarerit, :'8bit', :drawit, :armit, :hookit, :fritid, :snit, :flashit, :valberedningen, :laggit, :fikit, :dpo, :superadmin, :equalit, :tradgardsmasterit]
 
 	# This MUST be fixed to user cid, but using cid outright causes infinite recursion
 	def uid
