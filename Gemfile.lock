@@ -184,7 +184,7 @@ GEM
     rake (10.5.0)
     rb-fsevent (0.9.4)
     rdoc (4.2.0)
-    redcarpet (3.2.3)
+    redcarpet (3.5.1)
     request_store (1.4.1)
       rack (>= 1.4)
     rspec-core (3.2.3)
