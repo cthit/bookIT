@@ -27,7 +27,8 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /tmp/* /var/lib/apt/lists/*
 
-
+#Fix certificates for HTTPS
+RUN sed -i 's|mozilla/DST_Root_CA_X3.crt|!mozilla/DST_Root_CA_X3.crt|' /etc/ca-certificates.conf && update-ca-certificates
 
 #Install gems
 RUN mkdir /app
